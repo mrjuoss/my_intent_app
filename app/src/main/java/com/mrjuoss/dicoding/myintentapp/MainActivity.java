@@ -3,6 +3,7 @@ package com.mrjuoss.dicoding.myintentapp;
 import androidx.appcompat.app.AppCompatActivity;
 
 import android.content.Intent;
+import android.net.Uri;
 import android.os.Bundle;
 import android.view.View;
 import android.widget.Button;
@@ -10,6 +11,7 @@ import android.widget.Button;
 public class MainActivity extends AppCompatActivity implements View.OnClickListener {
     Button btnMoveActivity;
     Button btnMoveActivityWithData;
+    Button btnDialNumber;
 
     @Override
     protected void onCreate(Bundle savedInstanceState) {
@@ -18,9 +20,11 @@ public class MainActivity extends AppCompatActivity implements View.OnClickListe
 
         btnMoveActivity = findViewById(R.id.btn_move_activity);
         btnMoveActivityWithData = findViewById(R.id.btn_move_activity_data);
+        btnDialNumber = findViewById(R.id.btn_dial_number);
 
         btnMoveActivity.setOnClickListener(this);
         btnMoveActivityWithData.setOnClickListener(this);
+        btnDialNumber.setOnClickListener(this);
     }
 
     @Override
@@ -29,13 +33,25 @@ public class MainActivity extends AppCompatActivity implements View.OnClickListe
             case R.id.btn_move_activity:
                 Intent moveIntent = new Intent(MainActivity.this, MoveActivity.class);
                 startActivity(moveIntent);
-            break;
+                break;
             case R.id.btn_move_activity_data:
                 Intent moveWithDataIntent = new Intent(MainActivity.this, MoveWithDataActivity.class);
                 moveWithDataIntent.putExtra(MoveWithDataActivity.EXTRA_NAME, "Dicoding Academy Boy");
                 moveWithDataIntent.putExtra(MoveWithDataActivity.EXTRA_AGE, 5);
                 startActivity(moveWithDataIntent);
                 break;
+            case R.id.btn_dial_number:
+                String phoneNumber = "081315866766";
+                Intent dialPhoneIntent = new Intent(Intent.ACTION_DIAL, Uri.parse("tel:" + phoneNumber));
+                startActivity(dialPhoneIntent);
+                break;
+
+
+
+
+
+
+
         }
     }
 }
